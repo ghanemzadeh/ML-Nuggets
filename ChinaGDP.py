@@ -7,11 +7,11 @@ df = pd.read_csv("china_gdp.csv")
 
 #Plotting the Dataset
 x_data, y_data = (df["Year"].values, df["Value"].values)
-"""plt.figure(figsize=(8,5))
+plt.figure(figsize=(8,5))
 plt.plot(x_data, y_data, 'ro')
 plt.ylabel('GDP')
 plt.xlabel('Year')
-plt.show()"""
+plt.show()
 
 def sigmoid(x, Beta_1, Beta_2):
      y = 1 / (1 + np.exp(-Beta_1*(x-Beta_2)))
