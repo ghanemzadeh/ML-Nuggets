@@ -7,10 +7,11 @@ df = pd.read_csv("housePrice.csv")
 
 # take a look at the dataset
 print(df.head())
-#print(df.tail())
 print(df.shape)
-#print(df.dtypes)
+
+
 #Data cleansing for Area and Address features
+print(df.dtypes)
 df = df[pd.to_numeric(df["Area"], errors="coerce").notnull()]
 df["Area"] = df["Area"].astype("int")
 print(df.shape)
