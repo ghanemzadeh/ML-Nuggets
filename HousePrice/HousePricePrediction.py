@@ -3,6 +3,7 @@ import pandas as pd
 import pylab as pl
 import numpy as np
 
+#Reading Dataset
 df = pd.read_csv("housePrice.csv")
 
 #Take a look at the dataset
