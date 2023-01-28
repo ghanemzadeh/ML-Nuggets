@@ -5,7 +5,7 @@ import numpy as np
 
 df = pd.read_csv("housePrice.csv")
 
-# take a look at the dataset
+#Take a look at the dataset
 #print(df.head())
 #print(df.shape)
 
