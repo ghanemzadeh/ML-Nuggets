@@ -7,8 +7,9 @@ import numpy as np
 df = pd.read_csv("CCPP_data.csv")
 
 # Take a look at the dataset
-#print(df.head())
-#print(df.shape)
+print(df.head())
+print()
+print(df.shape)
 
 # Data cleansing for Area and Address features
 #print(df.dtypes)
@@ -24,7 +25,7 @@ df = pd.read_csv("CCPP_data.csv")
 plt.scatter(df["AT"], df["PE"],  color='blue')
 plt.xlabel("Temperature")
 plt.ylabel("Net hourly electrical energy output")
-#plt.show()
+plt.show()
 
 
 X = df[["AT", "V", "AP", "RH"]].values
@@ -38,6 +39,7 @@ from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.3, random_state=123)
 X_test, X_valid, y_test, y_valid = train_test_split( X_test, y_test, test_size=0.33, random_state=123)
+print()
 print ("Train set:", X_train.shape, y_train.shape)
 print ("Test set:", X_test.shape, y_test.shape)
 print ("Validation set:", X_valid.shape, y_valid.shape)
@@ -48,10 +50,12 @@ regr = linear_model.LinearRegression()
 regr.fit (X_train, y_train)
 
 # The coefficients
+print()
 print ("Coefficients: ", regr.coef_)
 
 # Validation & Validation Metrics
 y_hat_Valid= regr.predict(X_valid)
+print()
 print(f"Metrics for validation data")
 print(f"(Validation) Mean Absolute Error: {np.mean(np.absolute(y_hat_Valid - y_valid)):.2f}")
 print(f"(Validation) Residual sum of squares: {np.mean((y_hat_Valid - y_valid) ** 2):.2f}")
@@ -61,6 +65,7 @@ print(f"(Validation) Variance score: {regr.score(X_valid, y_valid):.2f}")
 y_hat= regr.predict(X_test)
 
 # Metrics
+print()
 print(f"Metrics for test data")
 print(f"Mean Absolute Error: {np.mean(np.absolute(y_hat - y_test)):.2f}")
 print(f"Residual sum of squares: {np.mean((y_hat - y_test) ** 2):.2f}")
@@ -75,6 +80,7 @@ regrRF.fit(X_train, y_train)
 y_hat= regrRF.predict(X_test)
 
 # Metrics
+print()
 print(f"Metrics for Random Forest test data with n_estimators=1000, max_depth=6")
 print(f"Mean Absolute Error: {np.mean(np.absolute(y_hat - y_test)):.2f}")
 print(f"Residual sum of squares: {np.mean((y_hat - y_test) ** 2):.2f}")
@@ -88,6 +94,7 @@ regrRF.fit(X_train, y_train)
 y_hat= regrRF.predict(X_test)
 
 # Metrics
+print()
 print(f"Metrics for Random Forest test data with n_estimators=300, max_depth=2")
 print(f"Mean Absolute Error: {np.mean(np.absolute(y_hat - y_test)):.2f}")
 print(f"Residual sum of squares: {np.mean((y_hat - y_test) ** 2):.2f}")
