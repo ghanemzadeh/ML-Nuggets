@@ -20,6 +20,7 @@ df = pd.read_csv("Customer.csv")
 # Data cleansing for Area and Address features
 #print(df.dtypes)
 df=df.dropna()
+
 # Convert "Gender" values to numerical values
 #print(df["Gender"].value_counts())
 df["Gender"] = df["Gender"].astype("category")
