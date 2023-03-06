@@ -34,16 +34,6 @@ scaler = MinMaxScaler()
 X = scaler.fit_transform(X)
 print(X[0:5])
 
-# Spliting Date into Train and Test (80/20)
-
-#X_train, X_test = train_test_split( X, test_size=0.2, random_state=123)
-# Did't use validation for now, Usually I split data 70/20/10
-#X_test, X_valid = train_test_split( X_test, test_size=0.33, random_state=123)
-#print()
-#print ("Train set:", X_train.shape)
-#print ("Test set:", X_test.shape)
-#print ("Validation set:", X_valid.shape)
-
 # Clustering
 
 # K-Means Clustering
