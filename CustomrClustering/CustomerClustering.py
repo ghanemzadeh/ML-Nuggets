@@ -19,7 +19,7 @@ df = pd.read_csv("Customer.csv")
 
 # Data cleansing for Area and Address features
 #print(df.dtypes)
-df=df.dropna()
+df = df.dropna()
 
 # Convert "Gender" values to numerical values
 #print(df["Gender"].value_counts())
@@ -35,10 +35,12 @@ scaler = MinMaxScaler()
 X = scaler.fit_transform(X)
 print(X[0:5])
 
-# Clustering
 
-# K-Means Clustering
-km = KMeans(n_clusters = 5, init = "random", n_init=10)
+
+######################
+# K-Means Clustering #
+
+km = KMeans(n_clusters = 5, init = "random", n_init = 10)
 y_km = km.fit_predict(X)
 print(y_km)
 
@@ -46,8 +48,22 @@ print(km.cluster_centers_)
 
 # Plot
 df_scale = pd.DataFrame(X, columns = ["Annual Income (k$)", "Spending Score (1-100)"]);
+df2 = df_scale
 df_scale.head(5)
 df_scale["Clusters"] = km.labels_
 #print(df_scale[0:5])
-sns.scatterplot(x="Spending Score (1-100)", y="Annual Income (k$)",hue = 'Clusters',  data=df_scale,palette='viridis')
+sns.scatterplot(x = "Spending Score (1-100)", y = "Annual Income (k$)", hue = 'Clusters', data = df_scale, palette = "viridis")
 plt.show() 
+
+#########################################
+# Agglomerative Hierarchical Clustering #
+
+from sklearn.cluster import AgglomerativeClustering
+
+clusters = AgglomerativeClustering(n_clusters = 5, linkage = "complete", metric = "euclidean")
+c = clusters.fit_predict(X)
+
+# Visualizing the clustering
+plt.figure(figsize =(5, 5))
+plt.scatter(df2["Spending Score (1-100)"], df2["Annual Income (k$)"], c = clusters.fit_predict(X), cmap = "rainbow")
+plt.show()
