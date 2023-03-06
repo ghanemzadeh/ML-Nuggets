@@ -42,7 +42,7 @@ print(X[0:5])
 
 km = KMeans(n_clusters = 5, init = "random", n_init = 10)
 y_km = km.fit_predict(X)
-print(y_km)
+#print(y_km)
 
 print(km.cluster_centers_)
 
@@ -60,10 +60,31 @@ plt.show()
 
 from sklearn.cluster import AgglomerativeClustering
 
-clusters = AgglomerativeClustering(n_clusters = 5, linkage = "complete", metric = "euclidean")
-c = clusters.fit_predict(X)
+ac = AgglomerativeClustering(n_clusters = 5, linkage = "complete", metric = "euclidean")
+y_ac = ac.fit_predict(X)
+#print(y_ac)
 
-# Visualizing the clustering
+# Plot
 plt.figure(figsize =(5, 5))
-plt.scatter(df2["Spending Score (1-100)"], df2["Annual Income (k$)"], c = clusters.fit_predict(X), cmap = "rainbow")
+plt.scatter(df2["Spending Score (1-100)"], df2["Annual Income (k$)"], c = ac.fit_predict(X), cmap = "rainbow")
 plt.show()
+
+#########################################
+# DBSCAN Clustering #
+
+from sklearn.cluster import DBSCAN
+
+db = DBSCAN(eps = 0.1, min_samples = 8, metric = "euclidean")
+y_db = db.fit_predict(X)
+
+# Plot
+c = db.labels_
+#print("c=: ", c)
+plt.scatter(X[:, 0], 
+X[:, 1], 
+c = db.labels_)
+plt.xlabel("Spending Score (1-100)")
+plt.ylabel("Annual Income (k$)")
+plt.show()
+
+
